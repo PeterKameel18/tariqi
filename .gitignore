@@ -1,0 +1,72 @@
+# Dependencies
+node_modules/
+.pub-cache/
+
+# Environment variables and secrets
+.env
+*.env.local
+*.env.production
+**/secrets.dart
+
+# Build artifacts
+backend.tar.gz
+build/
+*.tar.gz
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+._*
+
+# Deploy scripts with credentials
+deploy.exp
+check_os.exp
+
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+.packages
+.metadata
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/app.flx
+ios/Flutter/App.framework
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Android
+android/.gradle/
+android/captures/
+android/local.properties
+android/GeneratedPluginRegistrant.java
+**/android/**/gradle-wrapper.jar
+.gradle/
+
+# Coverage reports
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test
+__tests__/coverage/
+
+# Misc
+*.lock
+!pubspec.lock
+!package-lock.json

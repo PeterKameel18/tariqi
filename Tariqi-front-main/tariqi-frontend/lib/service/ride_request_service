@@ -1,0 +1,44 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:tariqi/models/driver_request.dart';
+import 'package:tariqi/const/api_links_keys/api_links_keys.dart';
+
+class RideRequestService {
+  static const String baseUrl = ApiLinksKeys.baseUrl;
+  
+  // Get available drivers that could accept the ride
+  static Future<List<DriverRequest>> getAvailableDrivers() async {
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/drivers/available'));
+      
+      if (response.statusCode == 200) {
+        final List<dynamic> driversJson = jsonDecode(response.body);
+        return driversJson.map((json) => DriverRequest.fromJson(json)).toList();
+      } else {
+        throw Exception('Failed to load available drivers: ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Failed to connect to server: $e');
+    }
+  }
+  
+  // Send user acceptance of a driver proposal
+  static Future<bool> acceptDriverProposal(String driverId, String rideId) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$baseUrl/rides/accept'),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          "driverId": driverId,
+          "rideId": rideId,
+        }),
+      );
+      
+      return response.statusCode == 200;
+    } catch (e) {
+      throw Exception('Failed to send acceptance: $e');
+    }
+  }
+  
+  // Check driver confirmation status
+  static Future<Map<String,

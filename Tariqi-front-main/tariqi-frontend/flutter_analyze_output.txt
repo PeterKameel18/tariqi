@@ -1,0 +1,81 @@
+Analyzing tariqi-frontend...                                    
+
+   info • Don't invoke 'print' in production code • lib/controller/auth_controllers/signup_controller.dart:69:9 • avoid_print
+   info • Don't invoke 'print' in production code • lib/controller/auth_controllers/signup_controller.dart:77:9 • avoid_print
+   info • Unnecessary use of '??' with 'null' • lib/controller/driver/driver_active_ride_controller.dart:430:46 • unnecessary_null_in_if_null_operators
+   info • Unnecessary use of '??' with 'null' • lib/controller/driver/driver_active_ride_controller.dart:513:46 • unnecessary_null_in_if_null_operators
+   info • Unnecessary braces in a string interpolation • lib/controller/driver/driver_active_ride_controller.dart:1493:35 • unnecessary_brace_in_string_interps
+   info • Unnecessary braces in a string interpolation • lib/controller/driver/driver_active_ride_controller.dart:1493:48 • unnecessary_brace_in_string_interps
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/controller/driver/driver_active_ride_controller.dart:1532:65 • invalid_use_of_protected_member
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/controller/driver/driver_active_ride_controller.dart:1543:32 • invalid_use_of_protected_member
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/controller/driver/driver_active_ride_controller.dart:1544:32 • invalid_use_of_protected_member
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/controller/driver/driver_active_ride_controller.dart:1563:48 • deprecated_member_use
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/controller/driver/driver_active_ride_controller.dart:1649:71 • invalid_use_of_protected_member
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/controller/driver/driver_active_ride_controller.dart:2338:39 • deprecated_member_use
+   info • 'desiredAccuracy' is deprecated and shouldn't be used. use settings parameter with AndroidSettings, AppleSettings, WebSettings, or LocationSettings • lib/controller/driver/driver_home_controller.dart:316:7 • deprecated_member_use
+warning • Unnecessary type check; the result is always 'true' • lib/controller/driver/driver_home_controller.dart:670:11 • unnecessary_type_check
+warning • The declaration '_buildDriverInfo' isn't referenced • lib/controller/driver/driver_home_controller.dart:930:8 • unused_element
+   info • Don't invoke 'print' in production code • lib/controller/driver_controller/search_driver_controller.dart:119:7 • avoid_print
+warning • The value of the local variable 'response' isn't used • lib/controller/driver_controller/search_driver_controller.dart:160:13 • unused_local_variable
+   info • Don't invoke 'print' in production code • lib/controller/driver_controller/search_driver_controller.dart:171:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/controller/driver_controller/search_driver_controller.dart:202:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/controller/user_trips_controller/user_trips_controller.dart:115:11 • avoid_print
+   info • Don't invoke 'print' in production code • lib/controller/user_trips_controller/user_trips_controller.dart:116:11 • avoid_print
+warning • The value of the local variable 'rideTime' isn't used • lib/services/driver_service.dart:175:11 • unused_local_variable
+   info • Use 'rethrow' to rethrow a caught exception • lib/services/driver_service.dart:438:9 • use_rethrow_when_possible
+   info • Use interpolation to compose strings and values • lib/services/driver_service.dart:927:39 • prefer_interpolation_to_compose_strings
+   info • Use 'rethrow' to rethrow a caught exception • lib/services/driver_service.dart:955:7 • use_rethrow_when_possible
+   info • The variable name 'Controller' isn't a lowerCamelCase identifier • lib/view/auth_screens/login_screen.dart:151:30 • non_constant_identifier_names
+   info • Use interpolation to compose strings and values • lib/view/core_widgets/chat_screen.dart:16:37 • prefer_interpolation_to_compose_strings
+warning • The declaration '_extractRideId' isn't referenced • lib/view/core_widgets/notification_screen.dart:103:11 • unused_element
+   info • The import of 'package:tariqi/controller/driver/driver_active_ride_controller.dart' is unnecessary because all of the used elements are also provided by the import of 'package:tariqi/controller/driver/driver_active_ride_controller.dart' • lib/view/driver/driver_active_ride_screen.dart:17:8 • unnecessary_import
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_active_ride_screen.dart:294:36 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_active_ride_screen.dart:296:55 • deprecated_member_use
+   info • The 'child' argument should be last in widget constructor invocations • lib/view/driver/driver_active_ride_screen.dart:342:19 • sort_child_properties_last
+   info • The 'child' argument should be last in widget constructor invocations • lib/view/driver/driver_active_ride_screen.dart:354:15 • sort_child_properties_last
+warning • The left operand can't be null, so the right operand is never executed • lib/view/driver/driver_active_ride_screen.dart:370:56 • dead_null_aware_expression
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_active_ride_screen.dart:402:35 • deprecated_member_use
+warning • The value of the local variable 'pickupLocation' isn't used • lib/view/driver/driver_active_ride_screen.dart:567:19 • unused_local_variable
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/view/driver/driver_active_ride_screen.dart:604:66 • invalid_use_of_protected_member
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/view/driver/driver_active_ride_screen.dart:790:57 • invalid_use_of_protected_member
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/view/driver/driver_active_ride_screen.dart:791:45 • invalid_use_of_protected_member
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/view/driver/driver_active_ride_screen.dart:792:47 • invalid_use_of_protected_member
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_active_ride_screen.dart:805:37 • deprecated_member_use
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/view/driver/driver_active_ride_screen.dart:867:77 • invalid_use_of_protected_member
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/view/driver/driver_active_ride_screen.dart:880:55 • invalid_use_of_protected_member
+warning • The member 'value' can only be used within instance members of subclasses of 'RxMap' • lib/view/driver/driver_active_ride_screen.dart:895:70 • invalid_use_of_protected_member
+  error • Undefined class 'DriverHomeController' • lib/view/driver/driver_home_screen.dart:29:8 • undefined_class
+  error • The method 'DriverHomeController' isn't defined for the type '_DriverHomeScreenState' • lib/view/driver/driver_home_screen.dart:58:26 • undefined_method
+  error • The method 'DriverHomeController' isn't defined for the type '_DriverHomeScreenState' • lib/view/driver/driver_home_screen.dart:121:26 • undefined_method
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_home_screen.dart:180:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_home_screen.dart:216:49 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_home_screen.dart:258:55 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_home_screen.dart:418:55 • deprecated_member_use
+warning • The declaration '_buildDriverInfo' isn't referenced • lib/view/driver/driver_home_screen.dart:440:10 • unused_element
+  error • Undefined class 'DriverHomeController' • lib/view/driver/driver_home_screen.dart:440:27 • undefined_class
+  error • Undefined class 'DriverHomeController' • lib/view/driver/driver_home_screen.dart:505:14 • undefined_class
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_home_screen.dart:516:35 • deprecated_member_use
+  error • Undefined class 'DriverHomeController' • lib/view/driver/driver_home_screen.dart:634:14 • undefined_class
+  error • Undefined class 'DriverHomeController' • lib/view/driver/driver_home_screen.dart:715:29 • undefined_class
+  error • The name 'DriverHomeController' isn't a type, so it can't be used as a type argument • lib/view/driver/driver_home_screen.dart:716:23 • non_type_as_type_argument
+  error • The property 'mapController' can't be unconditionally accessed because the receiver can be 'null' • lib/view/driver/driver_home_screen.dart:720:39 • unchecked_use_of_nullable_value
+  error • The property 'userPosition' can't be unconditionally accessed because the receiver can be 'null' • lib/view/driver/driver_home_screen.dart:723:28 • unchecked_use_of_nullable_value
+  error • The property 'userPosition' can't be unconditionally accessed because the receiver can be 'null' • lib/view/driver/driver_home_screen.dart:724:28 • unchecked_use_of_nullable_value
+  error • The method 'setDestinationFromMap' can't be unconditionally invoked because the receiver can be 'null' • lib/view/driver/driver_home_screen.dart:731:28 • unchecked_use_of_nullable_value
+  error • The property 'markers' can't be unconditionally accessed because the receiver can be 'null' • lib/view/driver/driver_home_screen.dart:739:47 • unchecked_use_of_nullable_value
+  error • The property 'routePolyline' can't be unconditionally accessed because the receiver can be 'null' • lib/view/driver/driver_home_screen.dart:741:39 • unchecked_use_of_nullable_value
+  error • The property 'usingDefaultLocation' can't be unconditionally accessed because the receiver can be 'null' • lib/view/driver/driver_home_screen.dart:760:32 • unchecked_use_of_nullable_value
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_home_screen.dart:768:42 • deprecated_member_use
+  error • The method 'getUserLocation' can't be unconditionally invoked because the receiver can be 'null' • lib/view/driver/driver_home_screen.dart:795:43 • unchecked_use_of_nullable_value
+  error • The property 'usingDefaultLocation' can't be unconditionally accessed because the receiver can be 'null' • lib/view/driver/driver_home_screen.dart:798:28 • unchecked_use_of_nullable_value
+  error • Undefined class 'DriverHomeController' • lib/view/driver/driver_home_screen.dart:843:33 • undefined_class
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/driver/driver_home_screen.dart:851:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/intro_screens/splash_screen.dart:31:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/intro_screens/splash_screen.dart:33:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/intro_screens/splash_screen.dart:52:47 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/intro_screens/splash_screen.dart:80:56 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/intro_screens/splash_screen.dart:84:51 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/intro_screens/splash_screen.dart:107:58 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/search_driver_screen/search_driver_screen.dart:115:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/view/search_driver_screen/search_driver_screen.dart:221:31 • deprecated_member_use
+
