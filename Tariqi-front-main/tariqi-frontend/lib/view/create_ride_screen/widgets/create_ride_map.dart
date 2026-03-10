@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:tariqi/const/class/screen_size.dart';
 import 'package:tariqi/const/colors/app_colors.dart';
+import 'package:tariqi/const/map_config.dart';
 import 'package:tariqi/controller/create_ride_controller/create_ride_controller.dart';
 import 'package:tariqi/view/core_widgets/handling_view.dart';
 
@@ -32,10 +33,9 @@ Widget createRideMap({required CreateRideController controller}) {
                     () => HandlingView(
                       requestState: controller.requestState.value,
                       widget: TileLayer(
-                        urlTemplate:
-                            'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // For demonstration only
-                        userAgentPackageName:
-                            'com.example.app', // Add your app identifier
+                        urlTemplate: MapConfig.tileUrl,
+                        subdomains: MapConfig.subdomains,
+                        userAgentPackageName: MapConfig.packageName,
                       ),
                     ),
                   ),
@@ -64,13 +64,9 @@ Widget createRideMap({required CreateRideController controller}) {
                       LogoSourceAttribution(
                         Icon(
                           Icons.location_searching_outlined,
-                          color: AppColors.blackColor,
+                          color: AppColors.primaryBlue,
                         ),
-                        onTap: () {
-                          // homeController.mapController.mapEventStream.listen(
-                          //   (event) => event.camera,
-                          // );
-                        },
+                        onTap: () {},
                       ),
                     ],
                   ),

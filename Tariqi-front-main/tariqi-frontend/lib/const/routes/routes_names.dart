@@ -17,4 +17,5 @@ class AppRoutesNames {
   static String chatScreen = "/chatScreen";
   static String notificationScreen = "/notificationScreen";
   static String trackRequestScreen = "/trackRequestScreen";
+  static String settingsScreen = "/settingsScreen";
 }

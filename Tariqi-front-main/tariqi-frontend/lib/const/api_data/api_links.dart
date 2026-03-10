@@ -1,8 +1,7 @@
+import 'package:tariqi/const/app_config.dart';
+
 abstract class ApiLinks {
-  // Server Base Url
-  // For physical device testing, use the Mac's local network IP
-  // Make sure your phone is on the same WiFi network as your Mac
-  static const String serverBaseUrl = "http://192.168.1.44:3000/api/";
+  static const String serverBaseUrl = "${AppConfig.baseUrl}/";
 
   // Auth End Points
   static const String signupUrl = "auth/signup";
@@ -16,12 +15,11 @@ abstract class ApiLinks {
   static const String createChatRoom = "chat/";
   static const String notification = "notifications";
 
-
   // Driver endpoints
   static const String driverProfile = 'driver/get/info';
   static const String driverStartRide = 'driver/create/ride';
-  static const String driverEndRide = 'driver/end/ride'; // Append ride_id when calling
-  static const String driverEndClientRide = 'driver/end/client/ride'; // Append ride_id and client_id when calling
+  static const String driverEndRide = 'driver/end/ride';
+  static const String driverEndClientRide = 'driver/end/client/ride';
   static const String driverAcceptRequest = 'driver/accept-request';
   static const String driverDeclineRequest = 'driver/decline-request';
 
@@ -34,8 +32,6 @@ abstract class ApiLinks {
 
   // Payment End Points
   static const paymentBaseUrl = "https://staging.fawaterk.com/api/v2/";
-
   static const String paymentMethodUrl = "invoiceInitPay";
-
   static const String paymentApiUrl = "getPaymentmethods";
 }

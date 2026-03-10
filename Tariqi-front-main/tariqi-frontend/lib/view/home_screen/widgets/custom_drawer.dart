@@ -68,7 +68,8 @@ Widget customDrawer({
                   _drawerItem(
                     title: "Settings",
                     icon: Icons.settings_rounded,
-                    navigationFunction: () {}, // Placeholder for future
+                    navigationFunction:
+                        () => homeController.drawerNavigationFunc(title: "settings"),
                   ),
                   _drawerItem(
                     title: "Logout",

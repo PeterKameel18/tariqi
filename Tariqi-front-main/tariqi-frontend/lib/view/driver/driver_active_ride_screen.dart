@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:tariqi/const/class/screen_size.dart';
 import 'package:tariqi/const/colors/app_colors.dart';
+import 'package:tariqi/const/map_config.dart';
 import 'package:tariqi/controller/driver/driver_active_ride_controller.dart';
 import 'package:tariqi/view/core_widgets/handling_view.dart';
 import 'package:tariqi/services/driver_service.dart';
@@ -386,8 +387,9 @@ class DriverActiveRideScreen extends StatelessWidget {
           HandlingView(
             requestState: controller.requestState.value,
             widget: TileLayer(
-              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              userAgentPackageName: 'com.example.app',
+              urlTemplate: MapConfig.tileUrl,
+              subdomains: MapConfig.subdomains,
+              userAgentPackageName: MapConfig.packageName,
             ),
           ),
           MarkerLayer(markers: controller.markers),

@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:tariqi/const/class/screen_size.dart';
+import 'package:tariqi/const/map_config.dart';
 import 'package:tariqi/controller/home_controller/home_controller.dart';
 import 'package:tariqi/view/core_widgets/handling_view.dart';
 
@@ -24,9 +25,9 @@ Widget mapView({required HomeController homeController}) => SizedBox(
         ),
         children: [
           TileLayer(
-             urlTemplate: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', 
-             subdomains: const ['a', 'b', 'c', 'd'],
-             userAgentPackageName: 'com.tariqi.app',
+            urlTemplate: MapConfig.tileUrl,
+            subdomains: MapConfig.subdomains,
+            userAgentPackageName: MapConfig.packageName,
           ),
           Obx(
             () => HandlingView(

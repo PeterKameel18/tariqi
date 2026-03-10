@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:tariqi/const/class/screen_size.dart';
 import 'package:tariqi/const/colors/app_colors.dart';
+import 'package:tariqi/const/map_config.dart';
 import 'package:tariqi/controller/driver_controller/search_driver_controller.dart';
 
 class SearchDriverScreen extends StatefulWidget {
@@ -71,8 +72,9 @@ class _SearchDriverScreenState extends State<SearchDriverScreen> with SingleTick
               ),
               children: [
                 TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  userAgentPackageName: 'com.example.app',
+                  urlTemplate: MapConfig.tileUrl,
+                  subdomains: MapConfig.subdomains,
+                  userAgentPackageName: MapConfig.packageName,
                 ),
                 Obx(() => MarkerLayer(markers: controller.driverMarkers.toList())),
               ],

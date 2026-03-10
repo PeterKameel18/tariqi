@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:tariqi/const/class/screen_size.dart';
 import 'package:tariqi/const/colors/app_colors.dart';
+import 'package:tariqi/const/map_config.dart';
 import 'package:tariqi/controller/available_rides_controller/available_rides_controller.dart';
 import 'package:tariqi/view/core_widgets/handling_view.dart';
 
@@ -30,10 +31,9 @@ Widget ridesMapView({required int index}) => Container(
                   () => HandlingView(
                     requestState: controller.requestState.value,
                     widget: TileLayer(
-                      urlTemplate:
-                          'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // For demonstration only
-                      userAgentPackageName:
-                          'com.example.app', // Add your app identifier
+                      urlTemplate: MapConfig.tileUrl,
+                      subdomains: MapConfig.subdomains,
+                      userAgentPackageName: MapConfig.packageName,
                     ),
                   ),
                 ),
@@ -71,7 +71,7 @@ Widget ridesMapView({required int index}) => Container(
                     LogoSourceAttribution(
                       Icon(
                         Icons.location_searching_outlined,
-                        color: AppColors.blackColor,
+                        color: AppColors.primaryBlue,
                       ),
                       onTap: () {},
                     ),

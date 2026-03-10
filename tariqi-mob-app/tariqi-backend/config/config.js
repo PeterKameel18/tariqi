@@ -17,7 +17,6 @@ module.exports = {
 
 // Validate required environment variables
 const requiredEnvVars = {
-  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   JWT_SECRET: process.env.JWT_SECRET,
   MONGO_URI: process.env.MONGO_URI,
 };

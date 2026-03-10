@@ -13,6 +13,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
 import 'package:tariqi/const/api_links_keys/api_links_keys.dart';
+import 'package:tariqi/const/api_endpoints.dart';
 import 'package:tariqi/controller/auth_controllers/auth_controller.dart';
 import 'package:tariqi/view/driver/driver_active_ride_screen.dart';
 import 'package:geolocator/geolocator.dart';
@@ -186,7 +187,7 @@ class DriverHomeController extends GetxController {
 
   Future<void> _testTokenWithDirectRequest(String token) async {
     try {
-      final testUrl = "http://tariqi.zapto.org/api/driver/get/info";
+      final testUrl = ApiEndpoints.driverProfile;
       log("🧪 Testing token with direct HTTP request to: $testUrl");
       
       final response = await http.get(

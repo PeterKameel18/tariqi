@@ -14,6 +14,7 @@ import 'package:tariqi/view/core_widgets/chat_screen.dart';
 import 'package:tariqi/view/notification_screen/notification_screen.dart';
 import 'package:tariqi/view/track_ride_screen/track_ride_screen.dart';
 import 'package:tariqi/view/payment_screen/payment_screen.dart';
+import 'package:tariqi/view/settings_screen/settings_screen.dart';
 import 'package:tariqi/view/trips_screen/user_trips_screen.dart';
 
 const _duration = Duration(milliseconds: 350);
@@ -113,6 +114,13 @@ List<GetPage<dynamic>> routes = [
   GetPage(
     name: AppRoutesNames.trackRequestScreen,
     page: () => TrackRideScreen(),
+    transition: Transition.rightToLeftWithFade,
+    transitionDuration: _duration,
+    curve: _curve,
+  ),
+  GetPage(
+    name: AppRoutesNames.settingsScreen,
+    page: () => const SettingsScreen(),
     transition: Transition.rightToLeftWithFade,
     transitionDuration: _duration,
     curve: _curve,

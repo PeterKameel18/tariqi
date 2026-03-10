@@ -225,8 +225,7 @@ class HomeController extends GetxController {
         break;
 
       case "payment":
-        // handle payment
-        debugPrint("Payment");
+        Get.toNamed(AppRoutesNames.paymentScreen);
         break;
 
       case "logout":
@@ -237,6 +236,10 @@ class HomeController extends GetxController {
 
       case "notifications":
         Get.offNamed(AppRoutesNames.notificationScreen);
+        break;
+
+      case "settings":
+        Get.toNamed(AppRoutesNames.settingsScreen);
         break;
 
       default:

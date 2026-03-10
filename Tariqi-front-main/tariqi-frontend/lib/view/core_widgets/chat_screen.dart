@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:tariqi/const/colors/app_colors.dart';
 import 'package:tariqi/controller/driver/driver_active_ride_controller.dart';
 import 'package:tariqi/models/chat_message.dart';
 import 'package:tariqi/services/driver_service.dart';
@@ -33,10 +35,23 @@ class ChatScreen extends StatelessWidget {
       builder: (context, snapshot) {
         final driverName = snapshot.data ?? 'Driver';
         return Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: AppColors.scaffoldBg,
           appBar: AppBar(
-            title: const Text('Chat Screen'),
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.white,
+            elevation: 0,
+            surfaceTintColor: Colors.transparent,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios_rounded, color: AppColors.textPrimary),
+              onPressed: () => Get.back(),
+            ),
+            title: Text(
+              'Ride Chat',
+              style: GoogleFonts.poppins(
+                color: AppColors.textPrimary,
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             centerTitle: true,
           ),
           body: Column(
@@ -44,70 +59,114 @@ class ChatScreen extends StatelessWidget {
               Expanded(
                 child: Obx(() {
                   if (controller.loading.value) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(
+                      child: CircularProgressIndicator(color: AppColors.primaryBlue),
+                    );
                   }
                   if (controller.messages.isEmpty) {
-                    return const Center(child: Text('No messages yet', style: TextStyle(color: Colors.white70)));
+                    return Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.chat_bubble_outline_rounded,
+                              size: 48, color: AppColors.textHint.withValues(alpha: 0.5)),
+                          const SizedBox(height: 12),
+                          Text(
+                            'No messages yet',
+                            style: GoogleFonts.poppins(
+                              color: AppColors.textSecondary,
+                              fontSize: 15,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
                   }
                   return ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     reverse: true,
                     itemCount: controller.messages.length,
                     itemBuilder: (context, index) {
-                      final ChatMessage msg = controller.messages[controller.messages.length - 1 - index];
-                      
-                      // Always use the real driver name for driver messages
+                      final ChatMessage msg =
+                          controller.messages[controller.messages.length - 1 - index];
                       final displayName = msg.isDriver ? driverName : msg.senderName;
-                      
+
                       return Align(
-                        alignment: msg.isDriver ? Alignment.centerRight : Alignment.centerLeft,
+                        alignment:
+                            msg.isDriver ? Alignment.centerRight : Alignment.centerLeft,
                         child: Column(
-                          crossAxisAlignment: msg.isDriver ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                          crossAxisAlignment: msg.isDriver
+                              ? CrossAxisAlignment.end
+                              : CrossAxisAlignment.start,
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(left: 4, right: 4, bottom: 2),
                               child: Text(
                                 displayName,
-                                style: TextStyle(
-                                  color: msg.isDriver ? Colors.blue[200] : Colors.grey[400],
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
+                                style: GoogleFonts.poppins(
+                                  color: msg.isDriver
+                                      ? AppColors.primaryBlue
+                                      : AppColors.textSecondary,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
                                 ),
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 2),
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                              constraints: BoxConstraints(
+                                maxWidth: MediaQuery.of(context).size.width * 0.75,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 10),
                               decoration: BoxDecoration(
-                                color: msg.isDriver ? Colors.blue : Colors.white,
+                                color: msg.isDriver
+                                    ? AppColors.primaryBlue
+                                    : Colors.white,
                                 borderRadius: BorderRadius.only(
                                   topLeft: const Radius.circular(18),
                                   topRight: const Radius.circular(18),
-                                  bottomLeft: Radius.circular(msg.isDriver ? 18 : 0),
-                                  bottomRight: Radius.circular(msg.isDriver ? 0 : 18),
+                                  bottomLeft:
+                                      Radius.circular(msg.isDriver ? 18 : 4),
+                                  bottomRight:
+                                      Radius.circular(msg.isDriver ? 4 : 18),
                                 ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withValues(alpha: 0.04),
+                                    blurRadius: 8,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
                               ),
                               child: Column(
-                                crossAxisAlignment: msg.isDriver ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                                crossAxisAlignment: msg.isDriver
+                                    ? CrossAxisAlignment.end
+                                    : CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     msg.message,
-                                    style: TextStyle(
-                                      color: msg.isDriver ? Colors.white : Colors.black,
-                                      fontSize: 16,
+                                    style: GoogleFonts.poppins(
+                                      color: msg.isDriver
+                                          ? Colors.white
+                                          : AppColors.textPrimary,
+                                      fontSize: 14,
                                     ),
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
                                     _formatTime(msg.createdAt),
-                                    style: TextStyle(
-                                      color: msg.isDriver ? Colors.white70 : Colors.black54,
+                                    style: GoogleFonts.poppins(
+                                      color: msg.isDriver
+                                          ? Colors.white70
+                                          : AppColors.textHint,
                                       fontSize: 10,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
+                            const SizedBox(height: 8),
                           ],
                         ),
                       );
@@ -115,49 +174,72 @@ class ChatScreen extends StatelessWidget {
                   );
                 }),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        controller: textController,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          hintText: 'Type your message',
-                          hintStyle: const TextStyle(color: Colors.white54),
-                          filled: true,
-                          fillColor: Colors.grey[900],
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(24),
-                            borderSide: BorderSide.none,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-                        ),
-                        onSubmitted: (text) async {
-                          final trimmed = text.trim();
-                          if (trimmed.isNotEmpty) {
-                            await controller.sendMessage(trimmed);
-                            textController.clear();
-                          }
-                        },
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      child: IconButton(
-                        icon: const Icon(Icons.send, color: Colors.white),
-                        onPressed: () async {
-                          final text = textController.text.trim();
-                          if (text.isNotEmpty) {
-                            await controller.sendMessage(text);
-                            textController.clear();
-                          }
-                        },
-                      ),
+              Container(
+                padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.05),
+                      blurRadius: 10,
+                      offset: const Offset(0, -2),
                     ),
                   ],
+                ),
+                child: SafeArea(
+                  top: false,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: textController,
+                          style: GoogleFonts.poppins(
+                            color: AppColors.textPrimary,
+                            fontSize: 14,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: 'Type your message...',
+                            hintStyle: GoogleFonts.poppins(
+                              color: AppColors.textHint,
+                              fontSize: 14,
+                            ),
+                            filled: true,
+                            fillColor: AppColors.scaffoldBg,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(24),
+                              borderSide: BorderSide.none,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 12),
+                          ),
+                          onSubmitted: (text) async {
+                            final trimmed = text.trim();
+                            if (trimmed.isNotEmpty) {
+                              await controller.sendMessage(trimmed);
+                              textController.clear();
+                            }
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                        decoration: const BoxDecoration(
+                          gradient: AppColors.primaryGradient,
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          icon: const Icon(Icons.send_rounded, color: Colors.white, size: 20),
+                          onPressed: () async {
+                            final text = textController.text.trim();
+                            if (text.isNotEmpty) {
+                              await controller.sendMessage(text);
+                              textController.clear();
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -170,4 +252,4 @@ class ChatScreen extends StatelessWidget {
   String _formatTime(DateTime dt) {
     return "${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}";
   }
-} 
+}

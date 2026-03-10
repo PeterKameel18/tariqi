@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:tariqi/const/class/screen_size.dart';
 import 'package:tariqi/const/colors/app_colors.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:tariqi/const/map_config.dart';
 import 'package:tariqi/controller/driver/driver_home_controller.dart';
 import 'package:tariqi/const/class/request_state.dart';
 import 'package:tariqi/services/driver_service.dart';
@@ -739,8 +740,9 @@ class _DriverHomeScreenState extends State<DriverHomeScreen>
             ),
             children: [
               TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.example.app',
+                urlTemplate: MapConfig.tileUrl,
+                subdomains: MapConfig.subdomains,
+                userAgentPackageName: MapConfig.packageName,
               ),
               MarkerLayer(markers: controller.markers),
               PolylineLayer(
