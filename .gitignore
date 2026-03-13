@@ -1,72 +1,72 @@
-# Dependencies
-node_modules/
-.pub-cache/
-
-# Environment variables and secrets
-.env
-*.env.local
-*.env.production
-**/secrets.dart
-
-# Build artifacts
-backend.tar.gz
-build/
-*.tar.gz
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*.code-workspace
-
-# OS files
+# OS / editor
 .DS_Store
 Thumbs.db
 ._*
-
-# Deploy scripts with credentials
-deploy.exp
-check_os.exp
-
-# Flutter
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
+.idea/
+.vscode/
 *.iml
-.packages
-.metadata
-
-# iOS
-ios/Pods/
-ios/.symlinks/
-ios/Flutter/Flutter.framework
-ios/Flutter/Flutter.podspec
-ios/Flutter/Generated.xcconfig
-ios/Flutter/app.flx
-ios/Flutter/App.framework
-ios/ServiceDefinitions.json
-ios/Runner/GeneratedPluginRegistrant.*
-
-# Android
-android/.gradle/
-android/captures/
-android/local.properties
-android/GeneratedPluginRegistrant.java
-**/android/**/gradle-wrapper.jar
-.gradle/
-
-# Coverage reports
-coverage/
 
 # Logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Test
-__tests__/coverage/
+# Environment / secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+**/serviceAccountKey.json
+**/google-services.json
+**/GoogleService-Info.plist
+**/firebase-adminsdk*.json
+**/GoogleService-Info-*.plist
+**/google-services-*.json
+**/lib/const/secrets.dart
+
+# Node.js
+node_modules/
+**/node_modules/
+coverage/
+**/coverage/
+dist/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+.pub-cache/
+.packages
+build/
+**/build/
+
+# Android
+.gradle/
+**/android/.gradle/
+**/android/local.properties
+**/android/captures/
+
+# iOS / macOS
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Podfile.lock
+**/ios/Runner.xcworkspace/xcuserdata/
+**/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
+**/macos/Pods/
+**/macos/Flutter/ephemeral/
+**/macos/Podfile.lock
+
+# Linux / Windows generated
+**/linux/flutter/ephemeral/
+**/windows/flutter/ephemeral/
 
 # Misc
-*.lock
-!pubspec.lock
-!package-lock.json
+*.swp
+*.swo
+*.tmp

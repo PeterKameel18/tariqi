@@ -1,192 +1,255 @@
-# Tariqi - Carpooling App
+# Tariqi
 
-A real-time carpooling platform connecting drivers and passengers for shared rides across Egypt. Built with a Node.js/Express backend and Flutter mobile frontend.
+Tariqi is a full-stack ride-sharing application built with Flutter and Node.js. It supports the full ride lifecycle for both drivers and clients, including authentication, ride creation, ride discovery, join requests, active ride tracking, chat, and trip history.
 
-## Architecture
+The project was developed as a production-style portfolio app with a strong focus on state consistency, lifecycle edge cases, backend contract correctness, and regression coverage.
 
-```
+## Demo
+
+- Demo GIF: `assets/demo/demo.gif`
+- Screenshots: `assets/demo/screenshots/`
+- QA checklist: [`docs/qa_regression_checklist.md`](docs/qa_regression_checklist.md)
+
+> Add your recorded demo GIF and screenshots before publishing.
+
+## Feature Overview
+
+### Authentication
+- Email/password login and signup
+- Forgot password flow
+- Phone authentication with OTP
+- JWT-based session handling
+- Role-based navigation for drivers and clients
+
+### Ride System
+- Drivers create rides and manage seat availability
+- Clients search route-matched rides
+- Clients request to join rides
+- Drivers accept or decline requests
+- Passenger pickup, onboarding, dropoff, and finish lifecycle
+
+### Active Ride Experience
+- Backend-driven client `ridePhase`
+- Driver active ride management
+- Client live ride tracking screen
+- Resume active ride entry from Trips
+- Stable ride recovery and navigation guards
+
+### Chat
+- Ride-specific chat between driver and passenger
+- Message persistence
+- Polling-based refresh for incoming messages
+
+### Location & Maps
+- `flutter_map` with OpenStreetMap
+- OpenCage geocoding
+- Egypt-aware place search
+- Cairo/Giza alias support such as `Sheikh Zayed`, `Tagamo3`, and `6 October`
+- Reverse geocoding for readable labels
+
+### Quality & Reliability
+- Frontend widget/controller regression tests
+- Frontend integration tests for key happy paths
+- Backend integration tests with Jest + Supertest
+- mongodb-memory-server powered isolated backend test environment
+- UI fallbacks for missing live data and recovery edge cases
+
+## Architecture Overview
+
+### Frontend
+- Flutter mobile app
+- GetX state management
+- Repository/controller/view separation
+- `flutter_map` + OpenStreetMap for map rendering
+- OpenCage for geocoding and reverse geocoding
+
+### Backend
+- Node.js
+- Express
+- MongoDB with Mongoose
+- JWT authentication
+- REST APIs for auth, rides, join requests, chat, and payments
+
+### System Design
+- The backend owns the truth for ride lifecycle state.
+- The frontend consumes backend state and renders role-specific UI for driver and client flows.
+- Automated tests protect both backend contract correctness and frontend regression-prone flows.
+
+## Screenshots
+
+Add screenshots to `assets/demo/screenshots/` and reference them here.
+
+Suggested set:
+- Welcome / Auth screen
+- Driver create ride screen
+- Client available rides screen
+- Driver join request dialog
+- Driver active ride screen
+- Client active ride tracking screen
+- Trips / history screen
+- Chat screen
+
+## Key Engineering Challenges Solved
+
+- Prevented accidental ride termination after ride creation
+- Stabilized join request accept/decline lifecycle across backend and frontend
+- Fixed duplicate pending/accepted trip rendering on the client
+- Added backend-driven active ride phase for client consistency
+- Stabilized driver active ride recovery without navigation traps
+- Fixed chat lifecycle, send/load behavior, and incoming message refresh
+- Hardened Firebase phone auth reCAPTCHA return handling on iOS
+- Improved Egypt-aware geocoding and readable location labels
+- Added deterministic regression coverage for high-risk ride lifecycle flows
+
+## Testing
+
+### Frontend
+- Widget/controller tests for auth and ride lifecycle edge cases
+- Integration tests for:
+  - happy-path request -> accept flow
+  - dropoff lifecycle flow
+  - phone auth restore behavior
+  - request blocking behavior
+
+### Backend
+- Integration tests for:
+  - join request lifecycle
+  - route matching correctness
+  - chat contract correctness
+
+### Tooling
+- Flutter test
+- Jest
+- Supertest
+- mongodb-memory-server
+
+## Project Structure
+
+```text
 Tariqi/
-├── tariqi-mob-app/
-│   ├── tariqi-backend/          # Node.js + Express API server
-│   │   ├── controllers/         # Route handlers (auth, rides, chat, payment)
-│   │   ├── models/              # Mongoose schemas (Client, Driver, Ride, etc.)
-│   │   ├── routes/              # Express route definitions
-│   │   ├── middleware/          # JWT authentication middleware
-│   │   ├── utils/               # Shared utilities (geo calculations, pricing)
-│   │   ├── config/              # Database and app configuration
-│   │   └── __tests__/           # Jest test suite (unit, integration, e2e)
-│   └── .env.example             # Environment variable template
-│
-└── Tariqi-front-main/
-    └── tariqi-frontend/         # Flutter mobile app
-        ├── lib/
-        │   ├── controller/      # GetX controllers
-        │   ├── models/          # Data models
-        │   ├── view/            # UI screens and widgets
-        │   ├── client_repo/     # API repository layer
-        │   ├── services/        # Service layer
-        │   └── const/           # Constants, routes, themes
-        └── test/                # Flutter unit tests
+├── tariqi-frontend/
+│   ├── lib/
+│   ├── test/
+│   ├── integration_test/
+│   └── ...
+├── tariqi-backend/
+│   ├── __tests__/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   └── ...
+├── docs/
+│   └── qa_regression_checklist.md
+├── assets/
+│   └── demo/
+│       ├── demo.gif
+│       └── screenshots/
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
 
-## Tech Stack
-
-| Layer | Technology |
-|-------|------------|
-| **Backend** | Node.js, Express 5, MongoDB (Mongoose) |
-| **Frontend** | Flutter (Dart), GetX state management |
-| **Auth** | JWT (jsonwebtoken) |
-| **Mapping** | OpenRouteService (routing), OSRM (polylines), OpenCage (geocoding) |
-| **Maps UI** | flutter_map with OpenStreetMap tiles |
-| **Payments** | Stripe (card), Cash |
-| **Real-time** | Socket.IO (ride chat) |
-
-## Features
-
-- **Driver ride creation** with route planning and seat management
-- **Smart ride matching** using optimal insertion algorithm to find the best pickup/dropoff points
-- **Real-time pricing** based on Haversine distance with gas cost calculation
-- **Approval system** where both driver and existing passengers approve new join requests
-- **Trip tracking** with live location updates and driver arrival notifications
-- **In-ride chat** via Socket.IO with message notifications
-- **Payment** supporting both Stripe card payments and cash
-- **Ride lifecycle** management (create, join, pickup, dropoff, end)
-
-## Getting Started
+## Setup Instructions
 
 ### Prerequisites
-
-- Node.js 18+
-- MongoDB (local or Atlas)
-- Flutter SDK 3.7+
-- OpenRouteService API key ([free at openrouteservice.org](https://openrouteservice.org/))
-
-### Backend Setup
-
-```bash
-cd tariqi-mob-app/tariqi-backend
-
-# Install dependencies
-npm install
-
-# Copy environment template and fill in your values
-cp ../.env.example .env
-
-# Start development server
-npm run dev
-```
+- Flutter SDK
+- Dart SDK
+- Node.js
+- npm
+- MongoDB
+- Firebase project for phone auth
+- OpenCage API key
 
 ### Frontend Setup
 
 ```bash
-cd Tariqi-front-main/tariqi-frontend
-
-# Install dependencies
+cd tariqi-frontend
 flutter pub get
+```
 
-# Update API base URL in lib/const/api_data/api_links.dart
-# to point to your backend server
+Make sure the frontend has:
+- the correct backend base URL
+- Firebase mobile config for Android/iOS
+- valid OpenCage configuration
 
-# Run the app
+### Backend Setup
+
+```bash
+cd tariqi-backend
+npm install
+```
+
+Provide the required environment variables locally, such as:
+- MongoDB connection string
+- JWT secret
+- Firebase Admin credentials
+- any API keys used by the backend
+
+## Running the Project Locally
+
+### Run the backend
+
+```bash
+cd tariqi-backend
+npm run dev
+```
+
+### Run the Flutter app
+
+```bash
+cd tariqi-frontend
 flutter run
 ```
 
-## Testing
+## Running Tests
 
-### Backend Tests
-
-The backend has a comprehensive test suite with **191+ tests** covering:
-
-- **Unit tests**: Geographic calculations (Haversine distance, pricing), JWT middleware, Mongoose models
-- **Integration tests**: All API endpoints (auth, rides, join requests, chat, payments, notifications)
-- **E2E tests**: Complete ride lifecycle scenarios (create → join → pickup → dropoff → payment → end)
+### Frontend tests
 
 ```bash
-cd tariqi-mob-app/tariqi-backend
-
-# Run all tests
-npm test
-
-# Run with coverage report
-npm run test:coverage
-
-# Run specific test suites
-npm run test:unit
-npm run test:integration
-npm run test:e2e
-```
-
-### Frontend Tests
-
-Flutter model tests covering all data models with JSON parsing, edge cases, and null handling.
-
-```bash
-cd Tariqi-front-main/tariqi-frontend
-
-# Run all tests
+cd tariqi-frontend
 flutter test
 ```
 
-## API Endpoints
+### Frontend integration tests
 
-### Authentication
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/signup` | Register new user (client or driver) |
-| POST | `/api/auth/login` | Login and receive JWT token |
+```bash
+cd tariqi-frontend
+flutter test integration_test
+```
 
-### Rides
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/driver/get/info` | Get driver profile |
-| POST | `/api/driver/create/ride` | Create a new ride |
-| POST | `/api/driver/end/ride/:rideId` | End entire ride |
-| POST | `/api/driver/end/client/ride/:rideId/:clientId` | Remove specific passenger |
-| POST | `/api/user/set/location` | Update user location |
-| GET | `/api/user/get/ride/data/:rideId` | Get ride data with locations |
-| GET | `/api/client/get/info` | Get client profile |
-| POST | `/api/client/get/rides` | Search available rides |
-| POST | `/api/client/request/ride/:rideId` | Request to join a ride |
-| POST | `/api/client/end/ride/:rideId` | Leave a ride |
+### Backend tests
 
-### Join Requests
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/joinRequests/calculate-price` | Calculate trip price |
-| POST | `/api/joinRequests/` | Create join request |
-| PUT | `/api/joinRequests/:id/approve` | Approve/reject request |
-| PUT | `/api/joinRequests/:id/pickup` | Mark passenger picked up |
-| PUT | `/api/joinRequests/:id/dropoff` | Mark passenger dropped off |
-| DELETE | `/api/joinRequests/:id` | Cancel pending request |
+```bash
+cd tariqi-backend
+npm test
+```
 
-### Chat & Payments
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/chat/:rideId` | Create chat room |
-| GET | `/api/chat/:rideId/messages` | Get chat messages |
-| POST | `/api/chat/:rideId/messages` | Send message |
-| POST | `/api/payment/initialize` | Initialize payment |
-| POST | `/api/payment/confirm-cash/:id` | Confirm cash payment |
-| GET | `/api/payment/history` | Get payment history |
+### Example targeted backend integration test
 
-## Geographic Calculations
+```bash
+cd tariqi-backend
+npm test -- --runTestsByPath __tests__/integration/joinRequestLifecycle.test.js --runInBand
+```
 
-The app uses the **Haversine formula** for straight-line distance calculations and **OpenRouteService** for road-based routing:
+## Future Improvements
 
-- **Haversine distance**: Used for pricing and proximity detection (e.g., driver arrival within 100m)
-- **ORS routing**: Used for optimal route insertion when matching passengers to rides
-- **Optimal insertion algorithm**: Tries all valid (pickup, dropoff) insertion pairs in the driver's route and selects the one with minimum additional travel time
+- Push notifications for ride and chat updates
+- WebSocket-based live ride sync instead of polling
+- Ratings and reviews
+- More polished trip timeline UX
+- Background location update hardening
+- CI/CD for automated test and quality checks
+- Payment flow completion and production hardening
 
-## Environment Variables
+## Author
 
-| Variable | Description |
-|----------|-------------|
-| `MONGO_URI` | MongoDB connection string |
-| `JWT_SECRET` | Secret key for JWT token signing |
-| `ORS_API_KEY` | OpenRouteService API key |
-| `STRIPE_SECRET_KEY` | Stripe secret key for card payments |
-| `PORT` | Server port (default: 5000) |
+**Peter**
+
+- GitHub: `your-github-link`
+- LinkedIn: `your-linkedin-link`
 
 ## License
 
-ISC
+This project is released under the MIT License. See [`LICENSE`](LICENSE).
