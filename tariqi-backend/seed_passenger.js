@@ -1,11 +1,14 @@
-
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
-const MONGO_URI = 'mongodb+srv://rtvpeter:bWe4HnnQq5nSJVAT@tariqidb.jcpa6ph.mongodb.net/?appName=TariqiDB';
+const MONGO_URI = process.env.MONGO_URI;
 
 async function seedClient() {
   try {
+    if (!MONGO_URI) {
+      throw new Error('MONGO_URI is not set. Add it to your local environment before running this script.');
+    }
     await mongoose.connect(MONGO_URI);
     console.log('Connected to DB');
 
