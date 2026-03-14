@@ -1,255 +1,210 @@
 # Tariqi
 
-Tariqi is a full-stack ride-sharing application built with Flutter and Node.js. It supports the full ride lifecycle for both drivers and clients, including authentication, ride creation, ride discovery, join requests, active ride tracking, chat, and trip history.
-
-The project was developed as a production-style portfolio app with a strong focus on state consistency, lifecycle edge cases, backend contract correctness, and regression coverage.
+![Flutter](https://img.shields.io/badge/Flutter-3.x-blue)
+![Node.js](https://img.shields.io/badge/Node.js-Express-green)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB%20Atlas-darkgreen)
+![License](https://img.shields.io/badge/License-ISC-lightgrey)
 
 ## Demo
 
-- Demo GIF: `assets/demo/demo.gif`
-- Screenshots: `assets/demo/screenshots/`
-- QA checklist: [`docs/qa_regression_checklist.md`](docs/qa_regression_checklist.md)
+<p align="center">
+  <img src="assets/demo/demo.gif" alt="Tariqi Demo" width="380">
+</p>
 
-> Add your recorded demo GIF and screenshots before publishing.
+Tariqi is a ride-sharing platform that connects drivers and passengers for real-time carpooling.
 
-## Feature Overview
+The project demonstrates a full ride lifecycle including authentication, ride creation, driver-passenger matching, live ride tracking, and in-ride communication.
 
-### Authentication
-- Email/password login and signup
-- Forgot password flow
-- Phone authentication with OTP
-- JWT-based session handling
-- Role-based navigation for drivers and clients
+Built using **Flutter**, **Node.js**, and **MongoDB Atlas**, the system focuses on real-time interactions, scalable backend design, and clean mobile UI flows.
 
-### Ride System
-- Drivers create rides and manage seat availability
-- Clients search route-matched rides
-- Clients request to join rides
-- Drivers accept or decline requests
-- Passenger pickup, onboarding, dropoff, and finish lifecycle
+---
 
-### Active Ride Experience
-- Backend-driven client `ridePhase`
-- Driver active ride management
-- Client live ride tracking screen
-- Resume active ride entry from Trips
-- Stable ride recovery and navigation guards
+## Features
 
-### Chat
-- Ride-specific chat between driver and passenger
-- Message persistence
-- Polling-based refresh for incoming messages
+### Phone Authentication
 
-### Location & Maps
-- `flutter_map` with OpenStreetMap
-- OpenCage geocoding
-- Egypt-aware place search
-- Cairo/Giza alias support such as `Sheikh Zayed`, `Tagamo3`, and `6 October`
-- Reverse geocoding for readable labels
+Secure phone authentication using OTP verification with Firebase.
 
-### Quality & Reliability
-- Frontend widget/controller regression tests
-- Frontend integration tests for key happy paths
-- Backend integration tests with Jest + Supertest
-- mongodb-memory-server powered isolated backend test environment
-- UI fallbacks for missing live data and recovery edge cases
+### Ride Creation
 
-## Architecture Overview
+Drivers can create rides with pickup and destination locations and available seats.
+
+### Ride Matching
+
+Passengers can discover and request available rides based on route compatibility.
+
+### Driver Acceptance Flow
+
+Drivers receive passenger join requests and can accept or decline them in real-time.
+
+### Live Ride Tracking
+
+Active rides display location updates and ride status through an interactive map.
+
+### In-Ride Chat
+
+Drivers and passengers can communicate during an active ride through ride-specific chat.
+
+---
+
+## Tech Stack
 
 ### Frontend
-- Flutter mobile app
-- GetX state management
-- Repository/controller/view separation
-- `flutter_map` + OpenStreetMap for map rendering
-- OpenCage for geocoding and reverse geocoding
+
+- Flutter
+- GetX (state management and routing)
+- flutter_map (OpenStreetMap integration)
+- Firebase Authentication
+- Dio (HTTP client)
+- Geolocator
 
 ### Backend
+
 - Node.js
-- Express
-- MongoDB with Mongoose
-- JWT authentication
-- REST APIs for auth, rides, join requests, chat, and payments
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- JWT Authentication
+- Firebase Admin SDK
 
-### System Design
-- The backend owns the truth for ride lifecycle state.
-- The frontend consumes backend state and renders role-specific UI for driver and client flows.
-- Automated tests protect both backend contract correctness and frontend regression-prone flows.
-
-## Screenshots
-
-Add screenshots to `assets/demo/screenshots/` and reference them here.
-
-Suggested set:
-- Welcome / Auth screen
-- Driver create ride screen
-- Client available rides screen
-- Driver join request dialog
-- Driver active ride screen
-- Client active ride tracking screen
-- Trips / history screen
-- Chat screen
-
-## Key Engineering Challenges Solved
-
-- Prevented accidental ride termination after ride creation
-- Stabilized join request accept/decline lifecycle across backend and frontend
-- Fixed duplicate pending/accepted trip rendering on the client
-- Added backend-driven active ride phase for client consistency
-- Stabilized driver active ride recovery without navigation traps
-- Fixed chat lifecycle, send/load behavior, and incoming message refresh
-- Hardened Firebase phone auth reCAPTCHA return handling on iOS
-- Improved Egypt-aware geocoding and readable location labels
-- Added deterministic regression coverage for high-risk ride lifecycle flows
-
-## Testing
-
-### Frontend
-- Widget/controller tests for auth and ride lifecycle edge cases
-- Integration tests for:
-  - happy-path request -> accept flow
-  - dropoff lifecycle flow
-  - phone auth restore behavior
-  - request blocking behavior
-
-### Backend
-- Integration tests for:
-  - join request lifecycle
-  - route matching correctness
-  - chat contract correctness
-
-### Tooling
-- Flutter test
-- Jest
-- Supertest
-- mongodb-memory-server
+---
 
 ## Project Structure
 
-```text
-Tariqi/
-├── tariqi-frontend/
-│   ├── lib/
-│   ├── test/
-│   ├── integration_test/
-│   └── ...
-├── tariqi-backend/
-│   ├── __tests__/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
+### Frontend
+
+```
+tariqi-frontend/
+├── lib/
+│   ├── controller/
 │   ├── models/
-│   ├── routes/
-│   └── ...
-├── docs/
-│   └── qa_regression_checklist.md
-├── assets/
-│   └── demo/
-│       ├── demo.gif
-│       └── screenshots/
-├── README.md
-├── LICENSE
-└── .gitignore
+│   ├── view/
+│   ├── services/
+│   ├── const/
+│   └── utils/
 ```
 
-## Setup Instructions
+### Backend
+
+```
+tariqi-backend/
+├── controllers/
+├── models/
+├── routes/
+├── middleware/
+├── config/
+└── utils/
+```
+
+---
+
+## Getting Started
 
 ### Prerequisites
-- Flutter SDK
-- Dart SDK
+
 - Node.js
-- npm
-- MongoDB
-- Firebase project for phone auth
-- OpenCage API key
+- Flutter SDK
+- MongoDB Atlas account
+- Firebase project (Phone Auth enabled)
 
-### Frontend Setup
+---
 
-```bash
-cd tariqi-frontend
-flutter pub get
+## Backend Setup
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/tariqi.git
+   cd tariqi/tariqi-backend
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Create environment variables**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Start the backend**
+   ```bash
+   npm run dev
+   ```
+
+Backend runs on: `http://localhost:3000`
+
+---
+
+## Frontend Setup
+
+1. **Navigate to the frontend**
+
+   ```bash
+   cd ../tariqi-frontend
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   flutter pub get
+   ```
+
+3. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+---
+
+## Environment Variables
+
+Create a `.env` file inside `tariqi-backend`.
+
+Example:
+
+```env
+PORT=3000
+MONGO_URI=
+JWT_SECRET=
 ```
 
-Make sure the frontend has:
-- the correct backend base URL
-- Firebase mobile config for Android/iOS
-- valid OpenCage configuration
+See `.env.example` for reference.
 
-### Backend Setup
+---
 
-```bash
-cd tariqi-backend
-npm install
-```
+## API Overview
 
-Provide the required environment variables locally, such as:
-- MongoDB connection string
-- JWT secret
-- Firebase Admin credentials
-- any API keys used by the backend
+### Authentication
 
-## Running the Project Locally
+- `POST /api/auth/send-otp`
+- `POST /api/auth/verify-otp`
+- `POST /api/auth/login`
+- `POST /api/auth/signup`
 
-### Run the backend
+### Rides
 
-```bash
-cd tariqi-backend
-npm run dev
-```
+- `POST /api/rides/create`
+- `POST /api/client/get/rides`
+- `GET  /api/driver/active-ride`
 
-### Run the Flutter app
+### Join Requests
 
-```bash
-cd tariqi-frontend
-flutter run
-```
+- `POST  /api/joinRequests`
+- `PATCH /api/joinRequests/:id`
 
-## Running Tests
-
-### Frontend tests
-
-```bash
-cd tariqi-frontend
-flutter test
-```
-
-### Frontend integration tests
-
-```bash
-cd tariqi-frontend
-flutter test integration_test
-```
-
-### Backend tests
-
-```bash
-cd tariqi-backend
-npm test
-```
-
-### Example targeted backend integration test
-
-```bash
-cd tariqi-backend
-npm test -- --runTestsByPath __tests__/integration/joinRequestLifecycle.test.js --runInBand
-```
-
-## Future Improvements
-
-- Push notifications for ride and chat updates
-- WebSocket-based live ride sync instead of polling
-- Ratings and reviews
-- More polished trip timeline UX
-- Background location update hardening
-- CI/CD for automated test and quality checks
-- Payment flow completion and production hardening
+---
 
 ## Author
 
-**Peter**
+**Peter**  
+Computer Engineering Student
 
-- GitHub: `your-github-link`
-- LinkedIn: `your-linkedin-link`
+---
 
 ## License
 
-This project is released under the MIT License. See [`LICENSE`](LICENSE).
+ISC License
