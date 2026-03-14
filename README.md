@@ -8,7 +8,11 @@
 ## Demo
 
 <p align="center">
+  Login and Ride Creation and searching
   <img src="assets/demo/demo.gif" alt="Tariqi Demo" width="250">
+  Ride Request, pickup, drop off and live-chatting.
+    <img src="assets/demo/demo1.gif" alt="Tariqi Demo" width="250">
+
 </p>
 Tariqi is a ride-sharing platform that connects drivers and passengers for real-time carpooling.
 
