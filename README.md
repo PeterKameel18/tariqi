@@ -8,9 +8,11 @@
 ## Demo
 
 <p align="center">
-  <img src="assets/demo/demo.gif" alt="Tariqi Demo" width="400">
+  <video width="600" controls>
+    <source src="assets/demo/demo.mov" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 </p>
-
 Tariqi is a ride-sharing platform that connects drivers and passengers for real-time carpooling.
 
 The project demonstrates a full ride lifecycle including authentication, ride creation, driver-passenger matching, live ride tracking, and in-ride communication.
