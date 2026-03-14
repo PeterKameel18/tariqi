@@ -11,11 +11,6 @@
 |--------------------------------|---------------------------------------------|
 | <img src="assets/demo/demo.gif" width="250"> | <img src="assets/demo/demo1.gif" width="250"> |
 
-<p align="center">
-  <b>Ride Request, Pickup, Drop-off & Live Chat</b><br><br>
-  <img src="assets/demo/demo1.gif" alt="Ride Request and Chat Demo" width="250">
-</p>
-</p>
 Tariqi is a ride-sharing platform that connects drivers and passengers for real-time carpooling.
 
 The project demonstrates a full ride lifecycle including authentication, ride creation, driver-passenger matching, live ride tracking, and in-ride communication.
