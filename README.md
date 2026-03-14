@@ -8,10 +8,7 @@
 ## Demo
 
 <p align="center">
-  <video width="600" controls>
-    <source src="assets/demo/demo.mov" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+  <img src="assets/demo/demo.gif" alt="Tariqi Demo" width="380">
 </p>
 Tariqi is a ride-sharing platform that connects drivers and passengers for real-time carpooling.
 
