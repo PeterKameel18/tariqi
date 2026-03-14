@@ -8,7 +8,7 @@
 ## Demo
 
 <p align="center">
-  <img src="assets/demo/demo.gif" alt="Tariqi Demo" width="1080">
+  <img src="assets/demo/demo.gif" alt="Tariqi Demo" width="380">
 </p>
 Tariqi is a ride-sharing platform that connects drivers and passengers for real-time carpooling.
 
