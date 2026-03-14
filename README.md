@@ -7,10 +7,9 @@
 
 ## Demo
 
-<p align="center">
-  <b>Login, Ride Creation & Search</b><br><br>
-  <img src="assets/demo/demo.gif" alt="Login and Ride Creation Demo" width="250">
-</p>
+| Login, Ride Creation & Search | Ride Request, Pickup, Drop-off & Live Chat |
+|--------------------------------|---------------------------------------------|
+| <img src="assets/demo/demo.gif" width="250"> | <img src="assets/demo/demo1.gif" width="250"> |
 
 <p align="center">
   <b>Ride Request, Pickup, Drop-off & Live Chat</b><br><br>
