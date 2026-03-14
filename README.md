@@ -8,7 +8,7 @@
 ## Demo
 
 <p align="center">
-  <img src="assets/demo/demo.gif" alt="Tariqi Demo" width="380">
+  <img src="assets/demo/demo.gif" alt="Tariqi Demo" width="400">
 </p>
 
 Tariqi is a ride-sharing platform that connects drivers and passengers for real-time carpooling.
@@ -114,7 +114,7 @@ tariqi-backend/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/tariqi.git
+   git clone https://github.com/PeterKameel18/tariqi.git
    cd tariqi/tariqi-backend
    ```
 
